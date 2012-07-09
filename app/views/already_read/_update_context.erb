@@ -1,0 +1,18 @@
+<% all_read = true; all_unread = true %>
+<% @issues.each do |issue| %>
+  <%  issue_read = issue.already_read? %>
+  <%  all_read = all_read && issue_read %>
+  <%  all_unread = all_unread && !issue_read %>
+<% end  %>
+
+<% unless all_read %>
+<li><%= context_menu_link l(:label_mark_read).capitalize,
+            {:controller => 'issues', :action => 'bulk_set_read', :issues => @issues, :ids => @issues.collect(&:id), :set_read => true, :back_url => @back},
+            :method => :post,:disabled => !@can[:update] %></li>
+<% end %>
+
+<% unless all_unread %>
+<li><%= context_menu_link l(:label_mark_unread).capitalize,
+            { :controller => 'issues', :action => 'bulk_set_read', :issues => @issues, :ids => @issues.collect(&:id), :set_unread => true, :back_url => @back},
+            :method => :post,  :disabled => !@can[:update] %></li>
+<% end %>

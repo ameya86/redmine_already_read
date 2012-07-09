@@ -14,6 +14,7 @@ module AlreadyReadIssuePatch
     def css_classes_with_already_read
       s = css_classes_without_already_read
       s << ((self.already_read?)? ' read' : ' unread')
+      s << ((self.new_unread?)? ' new' : '')
       return s
     end
   end
@@ -32,6 +33,11 @@ class Issue < ActiveRecord::Base
   # 既読ならtrueを返す
   def already_read?(user = User.current)
    return !user.anonymous? && user.already_read_issue_ids.include?(self.id)
+  end
+
+    # 既読ならtrueを返す
+  def new_unread?(user = User.current)
+   return !already_read? && !closed? && created_on > Date.today - 7
   end
 
   # チケットを読んだ日

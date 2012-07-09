@@ -5,3 +5,6 @@ en:
   label_already_read: Read
   label_read: Read
   label_unread: Unread
+  
+  label_mark_read: "Mark read"
+  label_mark_unread: "Mark unread"

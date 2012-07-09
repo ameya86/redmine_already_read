@@ -1,0 +1,12 @@
+.icon-new { background-image: url(../images/new_icon.jpg); }
+.icon-updated { background-image: url(../images/updated_icon.png); }
+
+tr.unread td.subject {font-weight:bold;
+   padding-left: 18px;
+   background: transparent url(../images/updated_icon.png) no-repeat center left;
+}
+
+tr.new td.subject {font-weight:bold;
+   padding-left: 35px;
+   background: transparent url(../images/new_icon.jpg) no-repeat center left;
+}
