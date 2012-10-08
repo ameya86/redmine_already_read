@@ -19,7 +19,7 @@ module AlreadyReadQueryPatch
       available_filters_without_already_read
 
       if !has_filter?('already_read')
-        @available_filters['already_read'] = {:type => :list, :order => 20, :values => @available_filters['author_id'][:values]}
+        @available_filters['already_read'] = {:type => :list, :order => 20, :values => @available_filters['author_id'][:values], :name => l(:field_already_read)}
       end
 
       return @available_filters
