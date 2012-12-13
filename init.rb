@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_already_read do
   name 'Redmine Already Read plugin'
   author 'OZAWA Yasuhiro'
   description 'Markup read issues.'
-  version '0.0.1'
+  version '0.0.2'
   url 'https://github.com/ameya86/redmine_already_read'
   author_url 'http://blog.livedoor.jp/ameya86/'
 end
