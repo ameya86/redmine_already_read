@@ -26,7 +26,7 @@ class Issue < ActiveRecord::Base
 
   # 状態を文字で返す
   def already_read(user = User.current)
-    return (already_read?(user))? l(:label_read) : l(:label_unread)
+    return (already_read?(user))? l(:label_already_read_read) : l(:label_already_read_unread)
   end
 
   # 既読ならtrueを返す
