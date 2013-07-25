@@ -9,10 +9,11 @@ Redmine::Plugin.register :redmine_already_read do
   name 'Redmine Already Read plugin'
   author 'OZAWA Yasuhiro'
   description 'Markup read issues.'
-  version '0.0.1'
+  version '0.0.3'
   url 'https://github.com/ameya86/redmine_already_read'
   author_url 'http://blog.livedoor.jp/ameya86/'
 
   Redmine::AccessControl.permission(:view_issues).actions << "issues/bulk_set_read" unless Redmine::AccessControl.permission(:view_issues).actions.include?("issues/bulk_set_read")
+  activity_provider :issues, :class_name => 'AlreadyRead'
 
 end

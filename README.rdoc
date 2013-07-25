@@ -6,7 +6,7 @@
 
 == インストール
 
-1. RAILS_ROOT/vendor/pluginsに配置する。
+1. RAILS_ROOT/pluginsに配置する。
 
 2. rake db:migrate_plugins RAILS_ENV=production
    を実行する。
@@ -20,7 +20,7 @@
    rake db:migrate:plugin RAILS_ENV=production VERSION=0 NAME=redmine_already_read
    を実行する。
 
-2. RAILS_ROOT/vendor/pluginsから削除する。
+2. RAILS_ROOT/pluginsから削除する。
 
 3. Redmineを再起動する。
 
@@ -35,6 +35,16 @@
 
 == 更新履歴
 
-=== Version 0.0.,1
+=== Version 0.0.3
 
-  リリース
+"活動"にチケットを読んだことが残るようにしました。
+
+
+=== Version 0.0.2
+
+フィルターが正しく表示されていなかったのを修正。
+
+
+=== Version 0.0.1
+
+リリース

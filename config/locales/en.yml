@@ -8,3 +8,9 @@ en:
   
   label_mark_read: "Mark read"
   label_mark_unread: "Mark unread"
+
+  label_already_read_read: Read
+  label_already_read_unread: Unread
+
+  activity_already_read: Read
+
