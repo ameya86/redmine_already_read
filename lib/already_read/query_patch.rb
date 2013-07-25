@@ -1,7 +1,7 @@
 require_dependency 'query'
 
-Query.add_available_column(QueryColumn.new(:already_read))
-Query.add_available_column(QueryColumn.new(:already_read_date))
+IssueQuery.add_available_column(QueryColumn.new(:already_read))
+IssueQuery.add_available_column(QueryColumn.new(:already_read_date))
 
 module AlreadyReadQueryPatch
   def self.included(base) # :nodoc:
@@ -27,7 +27,7 @@ module AlreadyReadQueryPatch
   end
 end
 
-class Query < ActiveRecord::Base
+class IssueQuery < Query
   # 既読／未読検出のSQL
   def sql_for_already_read_field(field, operator, value)
     db_table = AlreadyRead.table_name
@@ -47,4 +47,4 @@ class Query < ActiveRecord::Base
   end
 end
 
-Query.send(:include, AlreadyReadQueryPatch)
+IssueQuery.send(:include, AlreadyReadQueryPatch)
