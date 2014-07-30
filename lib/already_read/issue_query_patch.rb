@@ -1,9 +1,10 @@
 require_dependency 'query'
+require_dependency 'issue_query'
 
 IssueQuery.add_available_column(QueryColumn.new(:already_read))
 IssueQuery.add_available_column(QueryColumn.new(:already_read_date))
 
-module AlreadyReadQueryPatch
+module AlreadyReadIssueQueryPatch
   def self.included(base) # :nodoc:
     base.send(:include, InstanceMethods) # obj.method
 
@@ -47,4 +48,4 @@ class IssueQuery < Query
   end
 end
 
-IssueQuery.send(:include, AlreadyReadQueryPatch)
+IssueQuery.send(:include, AlreadyReadIssueQueryPatch)
