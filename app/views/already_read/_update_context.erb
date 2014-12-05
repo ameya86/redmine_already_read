@@ -7,12 +7,12 @@
 
 <% unless all_read %>
 <li><%= context_menu_link l(:label_mark_read).capitalize,
-            {:controller => 'issues', :action => 'bulk_set_read', :issues => @issues, :ids => @issues.collect(&:id), :set_read => true, :back_url => @back},
+            {:controller => 'issues', :action => 'bulk_set_read', :issues => @issues, :ids => @issues.collect(&:id), :set_read => true, :back_url => @back, :project => @project},
             :method => :post,:disabled => !@can[:update] %></li>
 <% end %>
 
 <% unless all_unread %>
 <li><%= context_menu_link l(:label_mark_unread).capitalize,
-            { :controller => 'issues', :action => 'bulk_set_read', :issues => @issues, :ids => @issues.collect(&:id), :set_unread => true, :back_url => @back},
+            { :controller => 'issues', :action => 'bulk_set_read', :issues => @issues, :ids => @issues.collect(&:id), :set_unread => true, :back_url => @back, :project => @project},
             :method => :post,  :disabled => !@can[:update] %></li>
 <% end %>
