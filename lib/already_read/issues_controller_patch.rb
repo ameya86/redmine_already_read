@@ -7,14 +7,14 @@ class IssuesController < ApplicationController
   after_filter :bulk_set_read, :only => [:bulk_edit, :bulk_update, :destroy]
 
   def bulk_set_read
-	issues = Issue.find(params["issues"]);
+	issues = Issue.where(:id => params["ids"]);
 	Rails::logger.info "AlreadyRead Plugin: bulk_set_read:  #{params}, issues: #{issues}" if Rails::logger && Rails::logger.info	  	  		  
 	if params[:set_unread]
         AlreadyRead.destroy_all(:issue_id => params[:ids], :user_id => User.current.id)
     else
         User.current.already_read_issues << issues.reject{|issue| issue.already_read?}
     end
-    redirect_back_or_default({:controller => 'issues', :action => 'index', :project_id => @project})
+    # redirect_back_or_default({:controller => 'issues', :action => 'index', :project_id => @project})
   end
 
   private
