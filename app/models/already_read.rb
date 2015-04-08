@@ -11,7 +11,7 @@ class AlreadyRead < ActiveRecord::Base
                 :author => :user,
                 :url => Proc.new {|o| {:controller => 'issues', :action => 'show', :id => o.issue.id}}
 
-  acts_as_activity_provider :timestamp => 'created_on',
+  acts_as_activity_provider :timestamp => "#{table_name}.created_on",
 							:find_options => {:include => [ {:issue => [:project, :tracker, :status]}, :user ]},
                             :author_key => :user_id, :type => 'issues'
 
