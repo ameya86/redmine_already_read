@@ -21,7 +21,7 @@ module AlreadyReadIssuePatch
 end
 
 class Issue < ActiveRecord::Base
-  has_many :already_reads, -> {includes :users, order('already_reads.created_on') }
+  has_many :already_reads, :class_name => 'AlreadyRead'
   has_many :already_read_users, :through => :already_reads, :source => :user
   after_update :reset_already_read
 
