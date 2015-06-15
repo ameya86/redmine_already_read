@@ -14,7 +14,7 @@ class IssuesController < ApplicationController
     else
         User.current.already_read_issues << issues.reject{|issue| issue.already_read?}
     end
-    # redirect_back_or_default({:controller => 'issues', :action => 'index', :project_id => @project})
+    redirect_back_or_default({:controller => 'issues', :action => 'index', :project_id => @project})
   end
 
   private
