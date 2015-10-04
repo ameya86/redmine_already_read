@@ -10,13 +10,14 @@ class AlreadyRead < ActiveRecord::Base
                 :author => :user,
                 :url => Proc.new {|o| {:controller => 'issues', :action => 'show', :id => o.issue.id}}
 
-  acts_as_activity_provider :find_options => {:include => [ {:issue => [:project, :tracker, :status]}, :user ]},
+  acts_as_activity_provider :scope => preload({:issue => [:project, :tracker, :status]}, :user),
                             :author_key => :user_id, :type => 'issues'
 
   # "活動"で参照するための閲覧スコープ
-  scope :visible,
-        lambda {|*args| { :include => {:issue => :project},
-                          :conditions => Issue.visible_condition(args.shift || User.current, *args) } }
+  scope :visible, lambda {|*args|
+    joins(:issue => :project).
+    where(Issue.visible_condition(args.shift || User.current, *args))
+  }
 
   # 状態の説明
   #  "活動"で参照する

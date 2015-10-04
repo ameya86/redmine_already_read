@@ -20,7 +20,7 @@ module AlreadyReadIssuePatch
 end
 
 class Issue < ActiveRecord::Base
-  has_many :already_reads, :include => [:user], :order => :created_on
+  has_many :already_reads, lambda {includes(:user); order(:created_on)}
   has_many :already_read_users, :through => :already_reads, :source => :user
   after_update :reset_already_read
 

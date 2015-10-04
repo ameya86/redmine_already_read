@@ -3,14 +3,14 @@
 チケットの既読／未読を管理し、チケット一覧に「既読」「読んだ日時」列を追加します。
 チケットを更新すると、そのチケットは未読チケットに戻ります。
 
-Redmine2.5.1で簡単な動作確認したのみ。
+Redmine3.0.5、3.1.1で簡単な動作確認したのみ。
 
 
 == インストール
 
 1. RAILS_ROOT/pluginsに配置する。
 
-2. rake db:migrate_plugins RAILS_ENV=production
+2. rake redmine:plugins:migrate RAILS_ENV=production
    を実行する。
 
 3. Redmineを再起動する。
@@ -19,7 +19,7 @@ Redmine2.5.1で簡単な動作確認したのみ。
 == アンインストール
 
 1. RAILS_ROOTで
-   rake db:migrate:plugin RAILS_ENV=production VERSION=0 NAME=redmine_already_read
+   rake redmine:plugins:migrate RAILS_ENV=production VERSION=0 NAME=redmine_already_read
    を実行する。
 
 2. RAILS_ROOT/pluginsから削除する。
@@ -36,6 +36,10 @@ Redmine2.5.1で簡単な動作確認したのみ。
 
 
 == 更新履歴
+
+=== Version 0.0.5
+
+3.0、3.1に仮対応。
 
 === Version 0.0.4
 
