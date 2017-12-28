@@ -20,7 +20,18 @@ module AlreadyReadIssueQueryPatch
       available_filters_without_already_read
 
       if !has_filter?('already_read')
-        @available_filters['already_read'] = {:type => :list, :order => 20, :values => @available_filters['author_id'][:values], :name => l(:field_already_read)}
+        if Redmine::VERSION.to_a[0] > 3 ||  # newer or equal to 3.4.0
+           Redmine::VERSION.to_a[0] == 3 && Redmine::VERSION.to_a[1] >= 4
+          @available_filters['already_read'] = QueryFilter.new(
+            'already_read',
+            type: :list,
+            order: 20,
+            values: @available_filters['author_id'][:values],
+            name: l(:field_already_read)
+          )
+        else
+          @available_filters['already_read'] = {:type => :list, :order => 20, :values => @available_filters['author_id'][:values], :name => l(:field_already_read)}
+        end
       end
 
       return @available_filters
