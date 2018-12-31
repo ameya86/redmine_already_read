@@ -1,0 +1,33 @@
+span.ar_counter.unread {
+    background: red;
+    border-radius: 8px 8px;
+}
+
+span.ar_counter.assigned_to_me {
+    background: black;
+    border-radius: 8px 8px;
+}
+
+tr.unread td.id:before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #FF0000;
+    border-radius: 50%;
+    margin-right: 4px;
+    margin-bottom: -1px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+tr.read td.id:before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #000000;
+    border-radius: 50%;
+    margin-right: 4px;
+    margin-bottom: -1px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
