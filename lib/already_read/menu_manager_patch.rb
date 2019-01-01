@@ -1,17 +1,8 @@
 require_dependency 'redmine/menu_manager'
 
 module AlreadyReadMenuManagerPatch
-  def self.included(base)
-    base.send(:include, InstanceMethods)
-
-    base.class_eval do
-      alias_method_chain :render_menu, :already_read
-    end
-  end
-
-  module InstanceMethods
-    def render_menu_with_already_read(menu, project=nil)
-      html = render_menu_without_already_read(menu, project)
+    def render_menu(menu, project=nil)
+      html = super(menu, project)
       if menu == :top_menu && html =~ /^(.*<a.*?class="my-page".*?)(<\/a.*)$/
         html1 = $1
         html2 = $2
@@ -29,7 +20,7 @@ module AlreadyReadMenuManagerPatch
       end
       return html.html_safe
     end
-  end
 end
 
-Redmine::MenuManager::MenuHelper.send(:include, AlreadyReadMenuManagerPatch)
+Redmine::MenuManager::MenuHelper.prepend AlreadyReadMenuManagerPatch
+include Redmine::MenuManager::MenuHelper

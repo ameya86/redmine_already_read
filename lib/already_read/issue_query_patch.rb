@@ -5,19 +5,10 @@ IssueQuery.add_available_column(QueryColumn.new(:already_read))
 IssueQuery.add_available_column(QueryColumn.new(:already_read_date))
 
 module AlreadyReadIssueQueryPatch
-  def self.included(base) # :nodoc:
-    base.send(:include, InstanceMethods) # obj.method
-
-    base.class_eval do
-      alias_method_chain :available_filters, :already_read
-    end
-  end
-
-  module InstanceMethods # obj.method
     # 既読フィルタを追加
-    def available_filters_with_already_read
+    def available_filters
       return @available_filters if @available_filters
-      available_filters_without_already_read
+      super
 
       if !has_filter?('already_read')
         if Redmine::VERSION.to_a[0] > 3 ||  # newer or equal to 3.4.0
@@ -36,8 +27,8 @@ module AlreadyReadIssueQueryPatch
 
       return @available_filters
     end
-  end
 end
+IssueQuery.prepend AlreadyReadIssueQueryPatch
 
 class IssueQuery < Query
   # 既読／未読検出のSQL
@@ -58,5 +49,3 @@ class IssueQuery < Query
     return sql
   end
 end
-
-IssueQuery.send(:include, AlreadyReadIssueQueryPatch)

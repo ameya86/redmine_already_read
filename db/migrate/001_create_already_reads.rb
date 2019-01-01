@@ -1,4 +1,4 @@
-class CreateAlreadyReads < ActiveRecord::Migration
+class CreateAlreadyReads < ActiveRecord::CompatibleLegacyMigration.migration_class
   def self.up
     create_table :already_reads do |t|
       t.column :issue_id,   :integer
