@@ -1,7 +1,7 @@
 require_dependency 'issues_controller'
 
 class IssuesController < ApplicationController
-  after_action :issue_read, :only => [:show]
+  before_action :issue_read, :only => [:show]
 
   private
   # 既読フラグを付ける

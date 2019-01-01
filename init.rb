@@ -3,6 +3,8 @@ require 'already_read/issue_patch'
 require 'already_read/issues_controller_patch'
 require 'already_read/user_patch'
 require 'already_read/issue_query_patch'
+require 'already_read/menu_manager_patch'
+require 'already_read/view_hook'
 
 Redmine::Plugin.register :redmine_already_read do
   name 'Redmine Already Read plugin'

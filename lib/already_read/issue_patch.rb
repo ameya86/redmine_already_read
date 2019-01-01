@@ -1,23 +1,14 @@
 require_dependency 'issue'
 
 module AlreadyReadIssuePatch
-  def self.included(base) # :nodoc:
-    base.send(:include, InstanceMethods) # obj.method
-
-    base.class_eval do
-      alias_method_chain :css_classes, :already_read
-    end
-  end
-
-  module InstanceMethods # obj.method
     # チケットのclassに既読／未読も追加する
-    def css_classes_with_already_read
-      s = css_classes_without_already_read
+    def css_classes
+      s = super
       s << ((self.already_read?)? ' read' : ' unread')
       return s
     end
-  end
 end
+Issue.prepend AlreadyReadIssuePatch
 
 class Issue < ActiveRecord::Base
   has_many :already_reads, lambda {includes(:user); order(:created_on)}
@@ -43,8 +34,6 @@ class Issue < ActiveRecord::Base
   private
   # 既読フラグはチケットを更新したらリセットする
   def reset_already_read
-    AlreadyRead.destroy_all(:issue_id => self.id)
+    AlreadyRead.where(:issue_id => self.id).destroy_all
   end
 end
-
-Issue.send(:include, AlreadyReadIssuePatch)
