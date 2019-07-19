@@ -1,0 +1,16 @@
+en:
+  field_already_read: Просмотрено 
+  field_already_read_date: Дата просмотра
+
+  label_already_read: Прочитать
+  label_read: Прочитать
+  label_unread: Не прочитано
+  
+  label_mark_read: "Отметить как прочинанное"
+  label_mark_unread: "Отметить как непрочинанное"
+
+  label_already_read_read: Прочинано
+  label_already_read_unread: Не прочинано
+
+  activity_already_read: Прочинано
+

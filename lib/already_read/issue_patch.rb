@@ -11,8 +11,8 @@ module AlreadyReadIssuePatch
 
   module InstanceMethods # obj.method
     # チケットのclassに既読／未読も追加する
-    def css_classes_with_already_read
-      s = css_classes_without_already_read
+    def css_classes_with_already_read(user=User.current)
+      s = css_classes_without_already_read(user)
       s << ((self.already_read?)? ' read' : ' unread')
       s << ((self.new_unread?)? ' new' : '')
       return s
