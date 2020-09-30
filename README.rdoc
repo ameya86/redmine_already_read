@@ -24,7 +24,7 @@ Redmine3.0.5、3.1.1で簡単な動作確認したのみ。
 
 2. RAILS_ROOT/pluginsから削除する。
 
-3. Redmineを再起動する。
+3. Read me を再起動する。
 
 
 == 備考
