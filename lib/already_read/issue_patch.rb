@@ -5,7 +5,7 @@ module AlreadyReadIssuePatch
     base.send(:include, InstanceMethods) # obj.method
 
     base.class_eval do
-      alias_method_chain :css_classes, :already_read
+      alias_method :css_classes, :already_read
     end
   end
 

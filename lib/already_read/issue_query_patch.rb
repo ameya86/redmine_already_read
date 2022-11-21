@@ -9,7 +9,7 @@ module AlreadyReadIssueQueryPatch
     base.send(:include, InstanceMethods) # obj.method
 
     base.class_eval do
-      alias_method_chain :available_filters, :already_read
+      alias_method :available_filters, :already_read
     end
   end
 
